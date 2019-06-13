@@ -10,7 +10,7 @@ cd $DIR
 docker run --rm -w /opt -v $DIR:/opt $PHP_IMG composer install --no-dev
 docker run --rm -w /opt -v $DIR:/opt $NODE_IMG npm install --registry https://npm-proxy.fury.io/iQe2xgJjTKscoNsbBNit/jump/
 docker run --rm -w /opt -v $DIR:/opt $NODE_IMG npm run build
-IMAGE=3707242425.dkr.ecr.eu-west-1.amazonaws.com/${SITE_NAME}:${TAG}
+IMAGE=683707242425.dkr.ecr.eu-west-1.amazonaws.com/site-${SITE_NAME}:${TAG}
 docker build -t ${IMAGE} .
 docker push ${IMAGE}
 
