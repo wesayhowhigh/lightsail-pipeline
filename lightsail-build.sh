@@ -14,6 +14,9 @@ IMAGE=683707242425.dkr.ecr.eu-west-1.amazonaws.com/site-${SITE_NAME}:${TAG}
 docker build -t ${IMAGE} .
 docker push ${IMAGE}
 
-DOCKER_LOGIN_CMD=aws ecr-get login --no-include-email
-ssh ubuntu@${ORIGIN_SERVER_IP} -c "${DOCKER_LOGIN_CMD}"
-ssh ubuntu@${ORIGIN_SERVER_IP} -c "docker-compose up -d -e IMAGE=${IMAGE} -e TAG=${TAG}"
+DOCKER_LOGIN_CMD=$(aws ecr get-login --no-include-email)
+ssh ubuntu@${ORIGIN_SERVER_IP} ${DOCKER_LOGIN_CMD}
+
+sed -i 's/original/new/g' docker-compose.prod.yml
+
+ssh -o SendEnv=ubuntu@${ORIGIN_SERVER_IP} docker-compose up -f docker-compose.prod.yml -d
