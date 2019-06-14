@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+#!/bin/bash
 
 cp /home/runner/secret /home/runner/${SITE_NAME}/.env
 
@@ -18,6 +18,8 @@ docker run --rm -w /opt -v $DIR:/opt $NODE_IMG npm run build
 IMAGE=683707242425.dkr.ecr.eu-west-1.amazonaws.com/site-${SITE_NAME}:${TAG}
 docker build -t ${IMAGE} .
 docker push ${IMAGE}
+
+ssh-keyscan -t rsa ${ORIGIN_SERVER_IP} >> ~/.ssh/known_hosts
 
 DOCKER_LOGIN_CMD=$(aws ecr get-login --no-include-email)
 ssh ubuntu@${ORIGIN_SERVER_IP} ${DOCKER_LOGIN_CMD}
