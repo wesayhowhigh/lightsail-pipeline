@@ -7,7 +7,7 @@ set -e
 DIR=$PWD
 PHP_IMG="wesayhowhigh/php-app"
 NODE_IMG="wesayhowhigh/node-build"
-TAG=v-${SEMAPHORE_BUILD_NUMBER}
+TAG=v-${BRANCH_NAME}-${SEMAPHORE_BUILD_NUMBER}
 
 cd $DIR
 
@@ -20,6 +20,8 @@ docker build -t ${IMAGE} .
 docker push ${IMAGE}
 
 ssh-keyscan -t rsa ${ORIGIN_SERVER_IP} >> ~/.ssh/known_hosts
+
+ssh ubuntu@${ORIGIN_SERVER_IP} cp docker-compose.prod.yml docker-compose.prod.backup.yml
 
 DOCKER_LOGIN_CMD=$(aws ecr get-login --no-include-email)
 ssh ubuntu@${ORIGIN_SERVER_IP} ${DOCKER_LOGIN_CMD}
