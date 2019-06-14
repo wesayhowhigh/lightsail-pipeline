@@ -1,6 +1,6 @@
 #!/bin/bash
 
-cp /home/runner/secret /home/runner/${SITE_NAME}/.env
+cp /home/runner/secret /home/runner/${SEMAPHORE_PROJECT_NAME}/.env
 
 set -e
 
@@ -15,7 +15,7 @@ docker run --rm -w /opt -v $DIR:/opt $PHP_IMG composer install --no-dev
 docker run --rm -w /opt -v $DIR:/opt $NODE_IMG npm install --registry https://npm-proxy.fury.io/iQe2xgJjTKscoNsbBNit/jump/
 docker run --rm -w /opt -v $DIR:/opt $NODE_IMG npm run build
 
-IMAGE=683707242425.dkr.ecr.eu-west-1.amazonaws.com/site-${SITE_NAME}:${TAG}
+IMAGE=683707242425.dkr.ecr.eu-west-1.amazonaws.com/site-${SEMAPHORE_PROJECT_NAME}:${TAG}
 docker build -t ${IMAGE} .
 docker push ${IMAGE}
 
