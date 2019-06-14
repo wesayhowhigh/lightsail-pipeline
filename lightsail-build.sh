@@ -7,7 +7,7 @@ set -e
 DIR=$PWD
 PHP_IMG="wesayhowhigh/php-app"
 NODE_IMG="wesayhowhigh/node-build"
-TAG=${BRANCH_NAME}/v-${SEMAPHORE_BUILD_NUMBER}
+TAG=v-${SEMAPHORE_BUILD_NUMBER}-${BRANCH_NAME}
 
 cd $DIR
 
