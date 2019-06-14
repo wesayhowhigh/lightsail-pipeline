@@ -7,7 +7,7 @@ set -e
 DIR=$PWD
 PHP_IMG="wesayhowhigh/php-app"
 NODE_IMG="wesayhowhigh/node-build"
-TAG="latest"
+TAG=v-${SEMAPHORE_BUILD_NUMBER}
 
 cd $DIR
 
