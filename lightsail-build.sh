@@ -15,6 +15,12 @@ docker run --rm -w /opt -v $DIR:/opt $PHP_IMG composer install --no-dev
 docker run --rm -w /opt -v $DIR:/opt $NODE_IMG npm install --registry https://npm-proxy.fury.io/iQe2xgJjTKscoNsbBNit/jump/
 docker run --rm -w /opt -v $DIR:/opt $NODE_IMG npm run build
 
+if [ -d "./vendor/wayfair/hypernova-php/src/plugins" ]; then
+  # Fix hypernova plugins folder case
+  docker run --rm -w /opt -v $DIR:/opt $PHP_IMG mv ./vendor/wayfair/hypernova-php/src/plugins ./vendor/wayfair/hypernova-php/src/Plugins
+  # End: Hypernova hacks
+fi
+
 IMAGE=683707242425.dkr.ecr.eu-west-1.amazonaws.com/site-${SEMAPHORE_PROJECT_NAME}:${TAG}
 docker build -t ${IMAGE} .
 docker push ${IMAGE}
