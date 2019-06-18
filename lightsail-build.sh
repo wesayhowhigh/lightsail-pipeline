@@ -7,7 +7,7 @@ set -e
 if [ "$BRANCH_NAME" == "staging" ]; then 
     ORIGIN_SERVER_IP=${ORIGIN_SERVER_IP_FOR_STAGING}
     cp /home/runner/secret-for-staging /home/runner/${SEMAPHORE_PROJECT_NAME}/.env
-    ssh-keyscan -t rsa ${ORIGIN_SERVER_IP} >> ~/.ssh/known_hosts
+    ssh-keyscan -t rsa ${ORIGIN_SERVER_IP_FOR_STAGING} >> ~/.ssh/known_hosts
 fi
 
 DIR=$PWD
