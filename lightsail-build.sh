@@ -4,6 +4,10 @@ cp /home/runner/secret /home/runner/${SEMAPHORE_PROJECT_NAME}/.env
 
 set -e
 
+if [ "$BRANCH_NAME" == "staging" ]; then 
+    ORIGIN_SERVER_IP=${ORIGIN_SERVER_IP_FOR_STAGING}
+fi
+
 DIR=$PWD
 PHP_IMG="wesayhowhigh/php-app"
 NODE_IMG="wesayhowhigh/node-build"
