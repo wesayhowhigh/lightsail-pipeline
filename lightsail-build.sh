@@ -6,6 +6,7 @@ set -e
 
 if [ "$BRANCH_NAME" == "staging" ]; then 
     ORIGIN_SERVER_IP=${ORIGIN_SERVER_IP_FOR_STAGING}
+    cp /home/runner/secret-for-staging /home/runner/${SEMAPHORE_PROJECT_NAME}/.env
 fi
 
 DIR=$PWD
