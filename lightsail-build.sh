@@ -1,10 +1,10 @@
 #!/bin/bash
 
+set -e
+
 cp /home/runner/secret /home/runner/${SEMAPHORE_PROJECT_NAME}/.env
 mkdir /home/runner/.composer
 cp /home/runner/composer-auth.json /home/runner/.composer/auth.json
-
-set -e
 
 if [ "$BRANCH_NAME" == "staging" ]; then 
     ORIGIN_SERVER_IP=${ORIGIN_SERVER_IP_FOR_STAGING}
