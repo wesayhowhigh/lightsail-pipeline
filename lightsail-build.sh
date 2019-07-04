@@ -1,7 +1,8 @@
 #!/bin/bash
 
 cp /home/runner/secret /home/runner/${SEMAPHORE_PROJECT_NAME}/.env
-cp /home/runner/auth.json /home/runner/${SEMAPHORE_PROJECT_NAME}/composer/auth.json
+mv /home/runner/composer-auth.json /home/runner/${SEMAPHORE_PROJECT_NAME}/composer/auth.json
+
 
 set -e
 
