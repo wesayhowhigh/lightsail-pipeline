@@ -3,7 +3,6 @@
 set -e
 
 cp /home/runner/secret /home/runner/${SEMAPHORE_PROJECT_NAME}/.env
-mkdir /home/runner/.composer
 cp /home/runner/composer-auth.json /home/runner/.composer/auth.json
 
 if [ "$BRANCH_NAME" == "staging" ]; then 
