@@ -3,6 +3,11 @@
 set -e
 
 cp /home/runner/secret /home/runner/${SEMAPHORE_PROJECT_NAME}/.env
+
+if [ ! -f "/home/runner/.composer ]; then
+    mkdir /home/runner/.composer
+fi
+
 cp /home/runner/composer-auth.json /home/runner/.composer/auth.json
 
 DIR=$PWD
