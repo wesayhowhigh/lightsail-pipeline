@@ -4,7 +4,7 @@ set -e
 
 mkdir -p /home/runner/.composer
 
-cp /home/runner/secret /home/runner/${SEMAPHORE_PROJECT_NAME}/.env
+cp /home/runner/secrets/${SITE_NAME} /home/runner/${SEMAPHORE_PROJECT_NAME}/.env
 cp /home/runner/composer-auth.json /home/runner/.composer/auth.json
 
 DIR=$PWD
