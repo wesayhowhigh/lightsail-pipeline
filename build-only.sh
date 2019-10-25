@@ -27,7 +27,7 @@ if [ -d "./vendor/wayfair/hypernova-php/src/plugins" ]; then
   # End: Hypernova hacks
 fi
 
-IMAGE=${REGISTRY_ID}.dkr.ecr.eu-west-1.amazonaws.com/site-${SITE_NAME}:${TAG}
+IMAGE=${REGISTRY_ID}.dkr.ecr.eu-west-1.amazonaws.com/${SITE_NAME}:${TAG}
 docker build -t ${IMAGE} .
 docker push ${IMAGE}
 
