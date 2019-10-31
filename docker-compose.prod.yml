@@ -5,6 +5,7 @@ services:
     image: IMAGE_GOES_HERE
     ports:
       - 80:80
+      - 443:443
     volumes:
       - /home/ubuntu/app:/var/www/html/storage/app
       - /home/ubuntu/content:/var/www/html/themes/app/content
