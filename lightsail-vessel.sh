@@ -9,7 +9,6 @@ cp /home/runner/composer-auth.json /home/runner/.composer/auth.json
 
 DIR=$PWD
 PHP_IMG="shippingdocker/php-composer"
-NODE_IMG="wesayhowhigh/node-build"
 TAG=v-${SEMAPHORE_BUILD_NUMBER}
 
 cd $DIR
@@ -18,8 +17,8 @@ cd $DIR
 docker run --rm -w /opt -v $DIR:/opt -v /home/runner/.composer:/root/.composer $PHP_IMG composer update mirrors
 
 docker run --rm -w /opt -v $DIR:/opt -v /home/runner/.composer:/root/.composer $PHP_IMG composer install --no-dev
-docker run --rm -w /opt -v $DIR:/opt $NODE_IMG npm install --registry https://npm-proxy.fury.io/iQe2xgJjTKscoNsbBNit/jump/
-docker run --rm -w /opt -v $DIR:/opt $NODE_IMG npm run build
+npm install --registry https://npm-proxy.fury.io/iQe2xgJjTKscoNsbBNit/jump/
+npm run build
 
 if [ -d "./vendor/wayfair/hypernova-php/src/plugins" ]; then
   # Fix hypernova plugins folder case
