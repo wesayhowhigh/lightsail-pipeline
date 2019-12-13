@@ -28,7 +28,7 @@ fi
 
 IMAGE=678417511013.dkr.ecr.eu-west-1.amazonaws.com/site-${SITE_NAME}:${TAG}
 
-docker build -t ${IMAGE} .
+docker build -f $PWD/docker/app/Dockerfile . -t ${IMAGE}	
 
 docker push ${IMAGE}
 
