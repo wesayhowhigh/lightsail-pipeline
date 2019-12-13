@@ -27,7 +27,7 @@ if [ -d "./vendor/wayfair/hypernova-php/src/plugins" ]; then
 fi
 
 IMAGE=678417511013.dkr.ecr.eu-west-1.amazonaws.com/site-${SITE_NAME}:${TAG}
-docker build -f $pwd/docker/app/Dockerfile -t ${IMAGE} .
+docker build -t ${IMAGE} .
 docker push ${IMAGE}
 
 ssh-keyscan -t rsa ${ORIGIN_SERVER_IP} >> ~/.ssh/known_hosts
