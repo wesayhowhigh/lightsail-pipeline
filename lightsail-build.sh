@@ -2,8 +2,6 @@
 
 set -e
 
-nvm use
-
 mkdir -p /home/runner/.composer
 
 cp /home/runner/secret /home/runner/${SEMAPHORE_PROJECT_NAME}/.env
