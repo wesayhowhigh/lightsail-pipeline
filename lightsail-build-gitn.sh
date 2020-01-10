@@ -15,7 +15,7 @@ TAG=v-${SEMAPHORE_BUILD_NUMBER}
 cd $DIR
 
 # TEMPORARY COMPOSER FIX
-docker run --rm -w /opt -v $DIR:/opt -v /home/runner/.composer:/root/.composer $PHP_IMG COMPOSER_MEMORY_LIMIT=-1 composer update mirrors
+docker run --rm -w /opt -v $DIR:/opt -v /home/runner/.composer:/root/.composer $PHP_IMG composer update mirrors
 
 docker run --rm -w /opt -v $DIR:/opt -v /home/runner/.composer:/root/.composer $PHP_IMG composer install --no-dev
 docker run --rm -w /opt -v $DIR:/opt $NODE_IMG npm install --registry https://npm-proxy.fury.io/iQe2xgJjTKscoNsbBNit/jump/
