@@ -15,6 +15,9 @@ TAG=v-${SEMAPHORE_BUILD_NUMBER}
 cd $DIR
 
 docker run --rm -w /opt -v $DIR:/opt -v /home/runner/.composer:/root/.composer $PHP_IMG composer install --no-dev
+
+nvm use
+npm install -g sass
 npm install --registry https://npm-proxy.fury.io/iQe2xgJjTKscoNsbBNit/jump/
 npm run build
 
