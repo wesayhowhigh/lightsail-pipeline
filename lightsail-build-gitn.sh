@@ -16,10 +16,6 @@ cd $DIR
 
 docker run --rm -w /opt -v $DIR:/opt -v /home/runner/.composer:/root/.composer $PHP_IMG composer install --no-dev
 
-npm install -g sass
-npm install --registry https://npm-proxy.fury.io/iQe2xgJjTKscoNsbBNit/jump/
-npm run build
-
 IMAGE=645020536086.dkr.ecr.eu-west-1.amazonaws.com/site-${SITE_NAME}:${TAG}
 docker build -t ${IMAGE} .
 docker push ${IMAGE}
