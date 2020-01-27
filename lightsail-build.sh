@@ -44,6 +44,3 @@ sed -i "s|IMAGE_GOES_HERE|${IMAGE}|g" docker-compose.prod.yml
 
 scp docker-compose.prod.yml ubuntu@${ORIGIN_SERVER_IP}:~/docker-compose.prod.yml
 ssh ubuntu@${ORIGIN_SERVER_IP} docker-compose -f docker-compose.prod.yml up -d
-
-EMAIL_BODY="<html><body><a href=\"https://github.com/${SEMAPHORE_REPO_SLUG}/commit/${REVISION}\">View commit</a></body></html>"
-curl "https://api.postmarkapp.com/email" -X POST -H "Accept: application/json" -H "Content-Type: application/json" -H "X-Postmark-Server-Token: ${POSTMARK_SERVER_TOKEN}" -d "{From: '\"Semaphore\" <build@jump-ops.com>', To: 'alerts@wesayhowhigh.com', Subject: '${SEMAPHORE_PROJECT_NAME} release', HtmlBody: '${EMAIL_BODY}'}"
