@@ -10,7 +10,7 @@ cp /home/runner/composer-auth.json /home/runner/.composer/auth.json
 DIR=$PWD
 PHP_IMG="wesayhowhigh/php-app"
 NODE_IMG="wesayhowhigh/node-build"
-TAG=v-${BRANCH_NAME}-${SEMAPHORE_BUILD_NUMBER}
+TAG=v-${SEMAPHORE_DEPLOY_NUMBER}-${SEMAPHORE_BUILD_NUMBER}
 
 cd $DIR
 
