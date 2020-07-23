@@ -2,6 +2,8 @@
 
 set -e
 
+[ -z "$REGISTRY_ID" ] && REGISTRY_ID=683707242425
+
 mkdir -p /home/runner/.composer
 
 cp /home/runner/secret /home/runner/${SEMAPHORE_PROJECT_NAME}/.env
@@ -25,7 +27,7 @@ if [ -d "./vendor/wayfair/hypernova-php/src/plugins" ]; then
   # End: Hypernova hacks
 fi
 
-IMAGE=683707242425.dkr.ecr.eu-west-1.amazonaws.com/site-${SITE_NAME}:${TAG}
+IMAGE=${REGISTRY_ID}.dkr.ecr.eu-west-1.amazonaws.com/site-${SITE_NAME}:${TAG}
 docker build -t ${IMAGE} .
 docker push ${IMAGE}
 
