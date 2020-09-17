@@ -55,7 +55,7 @@ server {
 
     # Glide
     location ~ ^/images/ {
-      location ~* \.(?:jpg|jpeg|gif|png)$ {
+      location ~* \.(?:jpg|jpeg|gif|png|svg)$ {
         expires 1y;
         access_log off;
         add_header Cache-Control "public";
