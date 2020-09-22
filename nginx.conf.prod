@@ -45,6 +45,7 @@ server {
     # cache.appcache, your document html and data
     location ~* \.(?:manifest|appcache|xml|json)$ {
         expires -1;
+        try_files $uri $uri/ /;
     }
 
     # Feed
