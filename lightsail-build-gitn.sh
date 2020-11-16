@@ -14,6 +14,9 @@ TAG=v-${SEMAPHORE_BUILD_NUMBER}
 
 cd $DIR
 
+# Authenticate with Docker Hub
+echo $DOCKER_PASSWORD | docker login --username "$DOCKER_USERNAME" --password-stdin
+
 docker run --rm -w /opt -v $DIR:/opt -v /home/runner/.composer:/root/.composer $PHP_IMG composer install --no-dev
 
 IMAGE=645020536086.dkr.ecr.eu-west-1.amazonaws.com/site-${SITE_NAME}:${TAG}
