@@ -42,7 +42,14 @@ DOCKER_LOGIN_CMD=$(aws ecr get-login --no-include-email)
 ssh ubuntu@${ORIGIN_SERVER_IP} ${DOCKER_LOGIN_CMD}
 ssh ubuntu@${ORIGIN_SERVER_IP} docker pull ${IMAGE}
 
-curl -o ./docker-compose.prod.yml https://raw.githubusercontent.com/wesayhowhigh/lightsail-pipeline/master/docker-compose.prod.yml
+DOCKER_COMPOSE_PATH=https://raw.githubusercontent.com/wesayhowhigh/lightsail-pipeline/master/docker-compose.prod.yml
+
+if [ ! -z "$DOCKER_COMPOSE_FILE" ]
+then
+  DOCKER_COMPOSE_PATH=https://raw.githubusercontent.com/wesayhowhigh/lightsail-pipeline/master/${DOCKER_COMPOSE_FILE}
+fi
+
+curl -o ./docker-compose.prod.yml ${DOCKER_COMPOSE_PATH}
 sed -i "s|IMAGE_GOES_HERE|${IMAGE}|g" docker-compose.prod.yml
 
 curl -o ./cron.sh https://raw.githubusercontent.com/wesayhowhigh/lightsail-pipeline/master/cron.sh
