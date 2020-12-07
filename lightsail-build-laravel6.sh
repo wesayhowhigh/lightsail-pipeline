@@ -52,6 +52,11 @@ fi
 curl -o ./docker-compose.prod.yml ${DOCKER_COMPOSE_PATH}
 sed -i "s|IMAGE_GOES_HERE|${IMAGE}|g" docker-compose.prod.yml
 
+if [ ! -z "$REDIS_PASSWORD" ]
+then
+  sed -i "s|REDIS_PASSWORD_GOES_HERE|${REDIS_PASSWORD}|g" docker-compose.prod.yml
+fi
+
 curl -o ./cron.sh https://raw.githubusercontent.com/wesayhowhigh/lightsail-pipeline/master/cron.sh
 
 scp cron.sh ubuntu@${ORIGIN_SERVER_IP}:~/cron.sh
