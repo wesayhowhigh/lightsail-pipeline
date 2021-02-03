@@ -10,7 +10,7 @@ cp /home/runner/secret /home/runner/${SEMAPHORE_PROJECT_NAME}/.env
 cp /home/runner/composer-auth.json /home/runner/.composer/auth.json
 
 DIR=$PWD
-PHP_IMG="wesayhowhigh/php-app"
+PHP_IMG="wesayhowhigh/site:standard73node"
 NODE_IMG="wesayhowhigh/node-build"
 TAG=v-${SEMAPHORE_DEPLOY_NUMBER}-${SEMAPHORE_BUILD_NUMBER}
 
