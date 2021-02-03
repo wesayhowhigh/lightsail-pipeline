@@ -29,7 +29,5 @@ services:
     volumes:
       - /home/ubuntu/redis_data:/var/lib/redis
       - /home/ubuntu/redis.conf:/usr/local/etc/redis/redis.conf
-    networks:
-      - sdnet
     environment:
       - REDIS_REPLICATION_MODE=master
