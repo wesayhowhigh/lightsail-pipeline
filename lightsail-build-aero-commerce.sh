@@ -8,6 +8,7 @@ mkdir -p /home/runner/.composer
 
 cp /home/runner/secret /home/runner/${SEMAPHORE_PROJECT_NAME}/.env
 cp /home/runner/composer-auth.json /home/runner/.composer/auth.json
+cp /home/runner/nginx.laravel6.conf /home/runner/${SEMAPHORE_PROJECT_NAME}/nginx.conf
 
 DIR=$PWD
 PHP_IMG="wesayhowhigh/site:standard73node"
