@@ -45,7 +45,7 @@ scp cron.sh ubuntu@${ORIGIN_SERVER_IP}:~/cron.sh
 scp docker-compose.prod.yml ubuntu@${ORIGIN_SERVER_IP}:~/docker-compose.prod.yml
 
 # Required for ElasticSearch
-sudo sysctl -w vm.max_map_count=262144
+ssh ubuntu@${ORIGIN_SERVER_IP} sudo sysctl -w vm.max_map_count=262144
 
 ssh ubuntu@${ORIGIN_SERVER_IP} docker-compose -f docker-compose.prod.yml run app php artisan view:clear
 ssh ubuntu@${ORIGIN_SERVER_IP} docker-compose -f docker-compose.prod.yml run app php artisan cache:clear
