@@ -12,7 +12,7 @@ cp /home/runner/nginx.laravel8.conf /home/runner/${SEMAPHORE_PROJECT_NAME}/nginx
 
 DIR=$PWD
 PHP_IMG="wesayhowhigh/php-app"
-NODE_IMG="wesayhowhigh/node-build"
+NODE_IMG="node:15"
 TAG=v-${SEMAPHORE_DEPLOY_NUMBER}-${SEMAPHORE_BUILD_NUMBER}
 
 cd $DIR
