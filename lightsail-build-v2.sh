@@ -2,6 +2,8 @@
 
 set -e
 
+[ -z "$NODE_IMG" ] && NODE_IMG="wesayhowhigh/node-build"
+
 mkdir -p /home/runner/.composer
 
 cp /home/runner/secrets/${SITE_NAME} /home/runner/${SEMAPHORE_PROJECT_NAME}/.env
@@ -9,7 +11,6 @@ cp /home/runner/composer-auth.json /home/runner/.composer/auth.json
 
 DIR=$PWD
 PHP_IMG="wesayhowhigh/php-app"
-NODE_IMG="wesayhowhigh/node-build"
 TAG=v-${SEMAPHORE_BUILD_NUMBER}
 
 cd $DIR
