@@ -55,4 +55,9 @@ curl -o ./cron.sh https://raw.githubusercontent.com/wesayhowhigh/lightsail-pipel
 
 scp cron.sh ubuntu@${ORIGIN_SERVER_IP}:~/cron.sh
 scp docker-compose.prod.yml ubuntu@${ORIGIN_SERVER_IP}:~/docker-compose.prod.yml
+
+ssh ubuntu@${ORIGIN_SERVER_IP} docker-compose -f docker-compose.prod.yml run app php artisan config:cache
+ssh ubuntu@${ORIGIN_SERVER_IP} docker-compose -f docker-compose.prod.yml run app php artisan migrate:status
+ssh ubuntu@${ORIGIN_SERVER_IP} docker-compose -f docker-compose.prod.yml run app php artisan migrate --force
+
 ssh ubuntu@${ORIGIN_SERVER_IP} docker-compose -f docker-compose.prod.yml up -d
