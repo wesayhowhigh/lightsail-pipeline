@@ -12,7 +12,7 @@ cp /home/runner/nginx.conf /home/runner/${SEMAPHORE_PROJECT_NAME}/nginx.conf
 
 DIR=$PWD
 PHP_IMG="wesayhowhigh/php-app"
-NODE_IMG="wesayhowhigh/node-build"
+NODE_IMG="node:11"
 TAG=v-${SEMAPHORE_DEPLOY_NUMBER}-${SEMAPHORE_BUILD_NUMBER}
 
 cd $DIR
