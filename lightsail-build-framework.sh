@@ -14,17 +14,14 @@ TAG=v-${SEMAPHORE_BUILD_NUMBER}
 
 cd $DIR
 
+# Authenticate with Docker Hub
+echo $DOCKER_PASSWORD | docker login --username "$DOCKER_USERNAME" --password-stdin
+
 docker run --rm -w /opt -v $DIR:/opt -v /home/runner/.composer:/root/.composer $PHP_IMG composer install --no-dev
 docker run --rm -w /opt -v $DIR:/opt $NODE_IMG npm install --registry https://npm-proxy.fury.io/iQe2xgJjTKscoNsbBNit/jump/
 docker run --rm -w /opt -v $DIR:/opt $NODE_IMG npm run build
 
 cp -r theme public/theme
-
-if [ -d "./vendor/wayfair/hypernova-php/src/plugins" ]; then
-  # Fix hypernova plugins folder case
-  docker run --rm -w /opt -v $DIR:/opt $PHP_IMG mv ./vendor/wayfair/hypernova-php/src/plugins ./vendor/wayfair/hypernova-php/src/Plugins
-  # End: Hypernova hacks
-fi
 
 IMAGE=${REGISTRY_ID}.dkr.ecr.eu-west-1.amazonaws.com/site-${SITE_NAME}:${TAG}
 docker build -t ${IMAGE} .
