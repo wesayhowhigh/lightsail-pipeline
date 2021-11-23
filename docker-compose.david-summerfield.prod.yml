@@ -1,0 +1,25 @@
+version: "3"
+
+services:
+  app:
+    image: IMAGE_GOES_HERE
+    restart: always
+    ports:
+      - 80:80
+      - 443:443
+    volumes:
+      - /home/ubuntu/app:/var/www/html/storage/app
+      - /home/ubuntu/content:/var/www/html/themes/app/content
+      - /home/ubuntu/meta:/var/www/html/themes/app/meta
+      - /etc/ssl:/etc/ssl
+      - /home/ubuntu/in:/var/www/html/in
+      - /home/ubuntu/out:/var/www/html/out
+  cron:
+    image: IMAGE_GOES_HERE
+    volumes:
+      - /home/ubuntu/app:/var/www/html/storage/app
+      - /home/ubuntu/content:/var/www/html/themes/app/content
+      - /home/ubuntu/meta:/var/www/html/themes/app/meta
+      - /etc/ssl:/etc/ssl
+      - /home/ubuntu/cron.sh:/var/www/html/cron.sh
+    command: sh cron.sh
