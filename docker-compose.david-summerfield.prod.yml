@@ -22,4 +22,5 @@ services:
       - /home/ubuntu/meta:/var/www/html/themes/app/meta
       - /etc/ssl:/etc/ssl
       - /home/ubuntu/cron.sh:/var/www/html/cron.sh
+      - /home/ubuntu/in:/var/www/html/in
     command: sh cron.sh
