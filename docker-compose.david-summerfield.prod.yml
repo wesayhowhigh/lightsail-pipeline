@@ -12,7 +12,6 @@ services:
       - /home/ubuntu/content:/var/www/html/themes/app/content
       - /home/ubuntu/meta:/var/www/html/themes/app/meta
       - /etc/ssl:/etc/ssl
-      - /home/ubuntu/in:/var/www/html/in
       - /home/ubuntu/out:/var/www/html/out
   cron:
     image: IMAGE_GOES_HERE
