@@ -32,6 +32,8 @@ services:
     environment:
       ALLOWED_DOMAINS: 'SITE_DOMAIN_GOES_HERE'
       SITES: 'SITE_DOMAIN_GOES_HERE=app:80'
+    depends_on:
+      - app
 
 volumes:
   ssl_data:
