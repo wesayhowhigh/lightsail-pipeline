@@ -5,8 +5,6 @@ services:
   app:
     image: IMAGE_GOES_HERE
     restart: always
-    ports:
-      - "80:80"
     volumes:
       - /home/ubuntu/app:/var/www/html/storage/app
       - /home/ubuntu/content:/var/www/html/themes/app/content
