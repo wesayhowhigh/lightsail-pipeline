@@ -7,9 +7,11 @@ set -e
 
 mkdir -p /home/runner/.composer
 
+NGINX_PATH=https://raw.githubusercontent.com/wesayhowhigh/lightsail-pipeline/full-ssl/nginx.laravel-6.ssl.conf
+
 cp /home/runner/secret /home/runner/${SEMAPHORE_PROJECT_NAME}/.env
 cp /home/runner/composer-auth.json /home/runner/.composer/auth.json
-cp /home/runner/nginx.laravel6.conf /home/runner/${SEMAPHORE_PROJECT_NAME}/nginx.conf
+curl -o /home/runner/${SEMAPHORE_PROJECT_NAME}/nginx.conf ${NGINX_PATH}
 
 DIR=$PWD
 PHP_IMG="wesayhowhigh/php-app"
