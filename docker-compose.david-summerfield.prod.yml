@@ -13,6 +13,7 @@ services:
       - /home/ubuntu/meta:/var/www/html/themes/app/meta
       - /etc/ssl:/etc/ssl
       - /home/ubuntu/out:/var/www/html/out
+      - /home/ubuntu/bransomlogs:/var/www/html/bransomlogs
   cron:
     image: IMAGE_GOES_HERE
     volumes:
