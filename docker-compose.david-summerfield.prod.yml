@@ -23,4 +23,5 @@ services:
       - /etc/ssl:/etc/ssl
       - /home/ubuntu/cron.sh:/var/www/html/cron.sh
       - /home/ubuntu/in:/var/www/html/in
+      - /home/ubuntu/bransomlogs:/var/www/html/bransomlogs
     command: sh cron.sh
