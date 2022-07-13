@@ -14,7 +14,6 @@ cp /home/runner/composer-auth.json /home/runner/.composer/auth.json
 curl -o /home/runner/${SEMAPHORE_PROJECT_NAME}/nginx.conf ${NGINX_PATH}
 
 DIR=$PWD
-PHP_IMG="wesayhowhigh/php-app"
 TAG=v-${SEMAPHORE_DEPLOY_NUMBER}-${SEMAPHORE_BUILD_NUMBER}
 
 cd $DIR
@@ -22,7 +21,7 @@ cd $DIR
 # Authenticate with Docker Hub
 echo $DOCKER_PASSWORD | docker login --username "$DOCKER_USERNAME" --password-stdin
 
-docker run --rm -w /opt -v $DIR:/opt -v /home/runner/.composer:/root/.composer $PHP_IMG composer install --no-dev --ignore-platform-reqs
+composer install --no-dev --ignore-platform-reqs
 docker run --rm -w /opt -v $DIR:/opt $NODE_IMG npm install --registry https://npm-proxy.fury.io/iQe2xgJjTKscoNsbBNit/jump/
 docker run --rm -w /opt -v $DIR:/opt $NODE_IMG npm run build
 
