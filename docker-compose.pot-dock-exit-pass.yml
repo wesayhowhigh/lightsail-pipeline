@@ -9,8 +9,6 @@ services:
       - /home/ubuntu/ftp/mandata/upload:/home/mandata/upload
     ports:
       - "2222:22"
-      - "1001:1001"
-      - "1002:1002"
     command: autostore:FTP_AUTOSTORE_PASSWORD:1001 mandata:FTP_MANDATA_PASSWORD:1002
   app:
     image: IMAGE_GOES_HERE
