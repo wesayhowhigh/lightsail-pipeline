@@ -44,4 +44,5 @@ curl -o ./docker-compose.prod.yml https://raw.githubusercontent.com/wesayhowhigh
 sed -i "s|IMAGE_GOES_HERE|${IMAGE}|g" docker-compose.prod.yml
 
 scp docker-compose.prod.yml ubuntu@${ORIGIN_SERVER_IP}:~/docker-compose.prod.yml
+ssh ubuntu@${ORIGIN_SERVER_IP} docker system prune --all --force
 ssh ubuntu@${ORIGIN_SERVER_IP} docker-compose -f docker-compose.prod.yml up -d
