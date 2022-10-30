@@ -11,7 +11,7 @@ cp /home/runner/composer-auth.json /home/runner/.composer/auth.json
 cp /home/runner/nginx.laravel8.conf /home/runner/${SEMAPHORE_PROJECT_NAME}/nginx.conf
 
 DIR=$PWD
-PHP_IMG="php:8.1-fpm-alpine"
+PHP_IMG="tangramor/nginx-php8-fpm"
 NODE_IMG="node:15"
 TAG=v-${SEMAPHORE_DEPLOY_NUMBER}-${SEMAPHORE_BUILD_NUMBER}
 
