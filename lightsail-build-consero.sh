@@ -8,10 +8,10 @@ mkdir -p /home/runner/.composer
 
 cp /home/runner/secret /home/runner/${SEMAPHORE_PROJECT_NAME}/.env
 cp /home/runner/composer-auth.json /home/runner/.composer/auth.json
-cp /home/runner/nginx.laravel8.conf /home/runner/${SEMAPHORE_PROJECT_NAME}/nginx.conf
+cp /home/runner/nginx.laravel9.conf /home/runner/${SEMAPHORE_PROJECT_NAME}/nginx.conf
 
 DIR=$PWD
-PHP_IMG="tangramor/nginx-php8-fpm"
+PHP_IMG="wesayhowhigh/site:standard8"
 NODE_IMG="node:15"
 TAG=v-${SEMAPHORE_DEPLOY_NUMBER}-${SEMAPHORE_BUILD_NUMBER}
 
