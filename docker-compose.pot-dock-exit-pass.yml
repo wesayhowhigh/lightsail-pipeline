@@ -14,13 +14,6 @@ services:
       - "2222:22"
     command: autostore:FTP_AUTOSTORE_PASSWORD:1001:::upload mandata:FTP_MANDATA_PASSWORD:1002:::upload
     
-  sftp_setup:
-    image: atmoz/sftp:alpine
-    depends_on:
-      - sftp
-    restart: "no"
-    entrypoint: [ "bash", "-c", "chown -R 1001:1001 /home/ubuntu/ftp/autostore && chown -R 1002:1002 /home/ubuntu/ftp/mandata" ]
-    
   app:
     image: IMAGE_GOES_HERE
     restart: always
