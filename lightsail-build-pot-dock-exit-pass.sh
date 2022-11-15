@@ -68,3 +68,5 @@ scp cron.sh ubuntu@${ORIGIN_SERVER_IP}:~/cron.sh
 scp docker-compose.prod.yml ubuntu@${ORIGIN_SERVER_IP}:~/docker-compose.prod.yml
 ssh ubuntu@${ORIGIN_SERVER_IP} docker system prune --all --force
 ssh ubuntu@${ORIGIN_SERVER_IP} docker-compose -f docker-compose.prod.yml up -d
+ssh ubuntu@${ORIGIN_SERVER_IP} chown -R 1001:1001 ./ftp/autostore/upload
+ssh ubuntu@${ORIGIN_SERVER_IP} chown -R 1002:1002 ./ftp/mandata/upload
