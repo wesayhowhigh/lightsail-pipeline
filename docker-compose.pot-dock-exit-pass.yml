@@ -7,9 +7,9 @@ services:
     volumes:
       - /home/ubuntu/ftp/autostore/upload:/home/autostore/upload
       - /home/ubuntu/ftp/mandata/upload:/home/mandata/upload
-      - type: 'bind'
-        source: './sshd_config'
-        target: '/etc/ssh/sshd_config'
+      - type: "bind"
+        source: "./sshd_config"
+        target: "/etc/ssh/sshd_config"
     ports:
       - "2222:22"
     command: autostore:FTP_AUTOSTORE_PASSWORD:1001 mandata:FTP_MANDATA_PASSWORD:1002
