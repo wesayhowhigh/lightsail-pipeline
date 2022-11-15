@@ -12,7 +12,7 @@ services:
         target: "/etc/ssh/sshd_config"
     ports:
       - "2222:22"
-    command: autostore:FTP_AUTOSTORE_PASSWORD:1001 mandata:FTP_MANDATA_PASSWORD:1002
+    command: autostore:FTP_AUTOSTORE_PASSWORD:::upload mandata:FTP_MANDATA_PASSWORD:::upload
     
   app:
     image: IMAGE_GOES_HERE
