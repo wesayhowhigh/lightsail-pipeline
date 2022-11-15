@@ -63,6 +63,7 @@ fi
 
 curl -o ./cron.sh https://raw.githubusercontent.com/wesayhowhigh/lightsail-pipeline/master/cron.sh
 
+scp /home/runner/${SEMAPHORE_PROJECT_NAME}/sshd_config ubuntu@${ORIGIN_SERVER_IP}:~/sshd_config
 scp cron.sh ubuntu@${ORIGIN_SERVER_IP}:~/cron.sh
 scp docker-compose.prod.yml ubuntu@${ORIGIN_SERVER_IP}:~/docker-compose.prod.yml
 ssh ubuntu@${ORIGIN_SERVER_IP} docker system prune --all --force
