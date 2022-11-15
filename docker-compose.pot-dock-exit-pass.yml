@@ -7,6 +7,7 @@ services:
     volumes:
       - /home/ubuntu/ftp/autostore/upload:/home/autostore/upload
       - /home/ubuntu/ftp/mandata/upload:/home/mandata/upload
+      - ./ftp_user_init.sh:/etc/sftp.d/init.sh:ro
       - type: "bind"
         source: "./sshd_config"
         target: "/etc/ssh/sshd_config"
