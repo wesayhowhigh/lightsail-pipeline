@@ -35,4 +35,5 @@ services:
       - /home/ubuntu/meta:/var/www/html/themes/app/meta
       - /etc/ssl:/etc/ssl
       - /home/ubuntu/cron.sh:/var/www/html/cron.sh
+      - /home/ubuntu/ftp:/var/www/html/storage/app/ftp
     command: sh cron.sh
