@@ -11,7 +11,7 @@ cp /home/runner/composer-auth.json /home/runner/.composer/auth.json
 cp /home/runner/nginx.laravel9.conf /home/runner/${SEMAPHORE_PROJECT_NAME}/nginx.conf
 
 DIR=$PWD
-PHP_IMG="wesayhowhigh/site:standard8"
+PHP_IMG="wesayhowhigh/site:standard81"
 NODE_IMG="node:14"
 TAG=v-${SEMAPHORE_DEPLOY_NUMBER}-${SEMAPHORE_BUILD_NUMBER}
 
@@ -20,8 +20,9 @@ cd $DIR
 # Authenticate with Docker Hub
 echo $DOCKER_PASSWORD | docker login --username "$DOCKER_USERNAME" --password-stdin
 
-composer install --no-dev --ignore-platform-reqs
 docker run --rm -w /opt -v $DIR:/opt -v /home/runner/.composer:/root/.composer $PHP_IMG php artisan project:set ${OCTOBER_LICENCE_KEY}
+composer install --no-dev --ignore-platform-reqs
+
 docker run --rm -w /opt -v $DIR:/opt $NODE_IMG npm install --registry https://npm-proxy.fury.io/iQe2xgJjTKscoNsbBNit/jump/
 docker run --rm -w /opt -v $DIR:/opt $NODE_IMG npm run build
 
