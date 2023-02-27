@@ -20,8 +20,6 @@ cd $DIR
 # Authenticate with Docker Hub
 echo $DOCKER_PASSWORD | docker login --username "$DOCKER_USERNAME" --password-stdin
 
-sed -i "s|OCTOBER_LICENCE_KEY_GOES_HERE|${OCTOBER_LICENCE_KEY}|g" Dockerfile
-
 docker run --rm -w /opt -v $DIR:/opt -v /home/runner/.composer:/root/.composer $PHP_IMG composer install --no-dev
 docker run --rm -w /opt -v $DIR:/opt $NODE_IMG npm install --registry https://npm-proxy.fury.io/iQe2xgJjTKscoNsbBNit/jump/
 docker run --rm -w /opt -v $DIR:/opt $NODE_IMG npm run build
@@ -59,3 +57,4 @@ scp cron.sh ubuntu@${ORIGIN_SERVER_IP}:~/cron.sh
 scp docker-compose.prod.yml ubuntu@${ORIGIN_SERVER_IP}:~/docker-compose.prod.yml
 ssh ubuntu@${ORIGIN_SERVER_IP} docker system prune --all --force
 ssh ubuntu@${ORIGIN_SERVER_IP} docker-compose -f docker-compose.prod.yml up -d
+ssh ubuntu@${ORIGIN_SERVER_IP} docker-compose -f docker-compose.prod.yml project:set ${OCTOBER_LICENCE_KEY}
