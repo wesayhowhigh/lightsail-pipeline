@@ -57,4 +57,7 @@ scp cron.sh ubuntu@${ORIGIN_SERVER_IP}:~/cron.sh
 scp docker-compose.prod.yml ubuntu@${ORIGIN_SERVER_IP}:~/docker-compose.prod.yml
 ssh ubuntu@${ORIGIN_SERVER_IP} docker system prune --all --force
 ssh ubuntu@${ORIGIN_SERVER_IP} docker-compose -f docker-compose.prod.yml up -d
+ssh ubuntu@${ORIGIN_SERVER_IP} docker-compose -f docker-compose.prod.yml exec -T app app php artisan view:clear
+ssh ubuntu@${ORIGIN_SERVER_IP} docker-compose -f docker-compose.prod.yml exec -T app app php artisan cache:clear
+ssh ubuntu@${ORIGIN_SERVER_IP} docker-compose -f docker-compose.prod.yml exec -T app app php artisan config:cache
 ssh ubuntu@${ORIGIN_SERVER_IP} docker-compose -f docker-compose.prod.yml exec -T app php artisan project:set ${OCTOBER_LICENCE_KEY}
