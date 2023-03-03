@@ -59,5 +59,4 @@ ssh ubuntu@${ORIGIN_SERVER_IP} docker system prune --all --force
 ssh ubuntu@${ORIGIN_SERVER_IP} docker-compose -f docker-compose.prod.yml up -d
 ssh ubuntu@${ORIGIN_SERVER_IP} docker-compose -f docker-compose.prod.yml exec -T app php artisan view:clear
 ssh ubuntu@${ORIGIN_SERVER_IP} docker-compose -f docker-compose.prod.yml exec -T app php artisan cache:clear
-ssh ubuntu@${ORIGIN_SERVER_IP} docker-compose -f docker-compose.prod.yml exec -T app php artisan config:cache
 ssh ubuntu@${ORIGIN_SERVER_IP} docker-compose -f docker-compose.prod.yml exec -T app php artisan project:set ${OCTOBER_LICENCE_KEY}
