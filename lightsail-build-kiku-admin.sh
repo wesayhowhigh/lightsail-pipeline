@@ -3,6 +3,7 @@
 set -e
 
 [ -z "$REGISTRY_ID" ] && REGISTRY_ID=683707242425
+[ -z "$NODE_IMG" ] && NODE_IMG="node:11"
 
 mkdir -p /home/runner/.composer
 
@@ -12,7 +13,6 @@ cp /home/runner/nginx.kiku-admin.conf /home/runner/${SEMAPHORE_PROJECT_NAME}/ngi
 
 DIR=$PWD
 PHP_IMG="wesayhowhigh/php-app"
-NODE_IMG="node:11"
 TAG=v-${SEMAPHORE_DEPLOY_NUMBER}-${SEMAPHORE_BUILD_NUMBER}
 
 cd $DIR
