@@ -73,3 +73,6 @@ ssh ubuntu@${ORIGIN_SERVER_IP} sudo chown -R 1001:1001 /home/ubuntu/ftp/autostor
 ssh ubuntu@${ORIGIN_SERVER_IP} sudo chown -R 1002:1002 /home/ubuntu/ftp/mandata/upload
 
 ssh ubuntu@${ORIGIN_SERVER_IP} docker-compose -f docker-compose.prod.yml up -d
+
+ssh ubuntu@${ORIGIN_SERVER_IP} sudo chown -R 1001:1001 /home/ubuntu/ftp/autostore/upload
+ssh ubuntu@${ORIGIN_SERVER_IP} sudo chown -R 1002:1002 /home/ubuntu/ftp/mandata/upload
