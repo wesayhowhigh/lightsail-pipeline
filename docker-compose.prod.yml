@@ -14,6 +14,7 @@ services:
       - /etc/ssl:/etc/ssl
   cron:
     image: IMAGE_GOES_HERE
+    restart: always
     volumes:
       - /home/ubuntu/app:/var/www/html/storage/app
       - /home/ubuntu/content:/var/www/html/themes/app/content
