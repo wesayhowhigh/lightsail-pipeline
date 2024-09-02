@@ -5,7 +5,7 @@ services:
     image: atmoz/sftp:alpine
     restart: always
     volumes:
-      - /home/ubuntu/ftp/upload:/home/upload
+      - /home/ubuntu/ftp/upload:/home/ftp/upload
       - type: "bind"
         source: "./sshd_config"
         target: "/etc/ssh/sshd_config"
