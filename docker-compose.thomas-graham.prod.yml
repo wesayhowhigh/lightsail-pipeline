@@ -6,8 +6,9 @@ services:
     restart: always
     volumes:
       - /home/ubuntu/ftp/upload:/home/upload
-      - /home/ubuntu/ftp-ssh/ssh_host_ed25519_key:/etc/ssh/ssh_host_ed25519_key
-      - /home/ubuntu/ftp-ssh/ssh_host_rsa_key:/etc/ssh/ssh_host_rsa_key
+      - type: "bind"
+        source: "./sshd_config"
+        target: "/etc/ssh/sshd_config"
     ports:
       - "2222:22"
     command: ftpuser:FTP_PASSWORD:1001:::upload
