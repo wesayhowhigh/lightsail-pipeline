@@ -1,18 +1,31 @@
-version: "3"
+version: "3.2"
 
 services:
+  sftp:
+    image: atmoz/sftp:alpine
+    restart: always
+    volumes:
+      - /home/ubuntu/ftp/upload:/home/upload
+      - type: "bind"
+        source: "./sshd_config"
+        target: "/etc/ssh/sshd_config"
+    ports:
+      - "2222:22"
+    command: ftpuser:FTP_PASSWORD:1001:::upload
+    
   app:
     image: IMAGE_GOES_HERE
     restart: always
     ports:
-      - 80:80
-      - 443:443
+      - "80:80"
+      - "443:443"
     volumes:
       - /home/ubuntu/app:/var/www/html/storage/app
       - /home/ubuntu/content:/var/www/html/themes/app/content
       - /home/ubuntu/meta:/var/www/html/themes/app/meta
       - /etc/ssl:/etc/ssl
-      - /home/ubuntu/ftp:/var/www/html/ftp
+      - /home/ubuntu/ftp:/var/www/html/storage/app/ftp
+      
   cron:
     image: IMAGE_GOES_HERE
     volumes:
@@ -21,5 +34,5 @@ services:
       - /home/ubuntu/meta:/var/www/html/themes/app/meta
       - /etc/ssl:/etc/ssl
       - /home/ubuntu/cron.sh:/var/www/html/cron.sh
-      - /home/ubuntu/ftp:/var/www/html/ftp
+      - /home/ubuntu/ftp:/var/www/html/storage/app/ftp
     command: sh cron.sh
