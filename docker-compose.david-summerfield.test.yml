@@ -1,0 +1,40 @@
+version: "3"
+
+services:
+  sftp:
+    image: atmoz/sftp:alpine
+    restart: always
+    volumes:
+      - /home/ubuntu/in:/home/bransom-in/in
+      - /home/ubuntu/out:/home/bransom-out/out
+      - type: "bind"
+        source: "./sshd_config"
+        target: "/etc/ssh/sshd_config"
+    ports:
+      - "2222:22"
+    command: bransom-in:FTP_PASSWORD:1001:::in bransom-out:FTP_PASSWORD:1002:::out
+
+  app:
+    image: IMAGE_GOES_HERE
+    restart: always
+    ports:
+      - 80:80
+      - 443:443
+    volumes:
+      - /home/ubuntu/app:/var/www/html/storage/app
+      - /home/ubuntu/content:/var/www/html/themes/app/content
+      - /home/ubuntu/meta:/var/www/html/themes/app/meta
+      - /etc/ssl:/etc/ssl
+      - /home/ubuntu/out:/var/www/html/out
+      - /home/ubuntu/bransomlogs:/var/www/html/bransomlogs
+  cron:
+    image: IMAGE_GOES_HERE
+    volumes:
+      - /home/ubuntu/app:/var/www/html/storage/app
+      - /home/ubuntu/content:/var/www/html/themes/app/content
+      - /home/ubuntu/meta:/var/www/html/themes/app/meta
+      - /etc/ssl:/etc/ssl
+      - /home/ubuntu/cron.sh:/var/www/html/cron.sh
+      - /home/ubuntu/in:/var/www/html/in
+      - /home/ubuntu/bransomlogs:/var/www/html/bransomlogs
+    command: sh cron.sh
