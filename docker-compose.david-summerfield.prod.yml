@@ -1,6 +1,19 @@
-version: "3"
+version: "3.2"
 
 services:
+  sftp:
+    image: atmoz/sftp:alpine
+    restart: always
+    volumes:
+      - /home/ubuntu/in:/home/bransom-in/in
+      - /home/ubuntu/out:/home/bransom-out/out
+      - type: "bind"
+        source: "./sshd_config"
+        target: "/etc/ssh/sshd_config"
+    ports:
+      - "2222:22"
+    command: bransom-in:FTP_PASSWORD:1001:::in bransom-out:FTP_PASSWORD:1002:::out
+
   app:
     image: IMAGE_GOES_HERE
     restart: always
