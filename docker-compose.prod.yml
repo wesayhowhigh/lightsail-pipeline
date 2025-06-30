@@ -11,7 +11,7 @@ services:
       - /home/ubuntu/app:/var/www/html/storage/app
       - /home/ubuntu/content:/var/www/html/themes/app/content
       - /home/ubuntu/meta:/var/www/html/themes/app/meta
-      - /etc/ssl:/etc/ssl
+
   cron:
     image: IMAGE_GOES_HERE
     restart: always
@@ -19,6 +19,5 @@ services:
       - /home/ubuntu/app:/var/www/html/storage/app
       - /home/ubuntu/content:/var/www/html/themes/app/content
       - /home/ubuntu/meta:/var/www/html/themes/app/meta
-      - /etc/ssl:/etc/ssl
       - /home/ubuntu/cron.sh:/var/www/html/cron.sh
     command: sh cron.sh
