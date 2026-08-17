@@ -1,0 +1,37 @@
+version: "3.2"
+
+services:
+  sftp:
+    image: atmoz/sftp:alpine
+    restart: always
+    volumes:
+      - /home/ubuntu/ftp/autostore/upload:/home/autostore/upload
+      - /home/ubuntu/ftp/mandata/upload:/home/mandata/upload
+      - type: "bind"
+        source: "./sshd_config"
+        target: "/etc/ssh/sshd_config"
+    ports:
+      - "2222:22"
+    command: autostore:FTP_AUTOSTORE_PASSWORD_GOES_HERE:1001:::upload mandata:FTP_MANDATA_PASSWORD_GOES_HERE:1002:::upload
+    
+  app:
+    image: IMAGE_GOES_HERE
+    restart: always
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - /home/ubuntu/app:/var/www/html/storage/app
+      - /home/ubuntu/content:/var/www/html/themes/app/content
+      - /home/ubuntu/meta:/var/www/html/themes/app/meta
+      - /home/ubuntu/ftp:/var/www/html/storage/app/ftp
+      
+  cron:
+    image: IMAGE_GOES_HERE
+    volumes:
+      - /home/ubuntu/app:/var/www/html/storage/app
+      - /home/ubuntu/content:/var/www/html/themes/app/content
+      - /home/ubuntu/meta:/var/www/html/themes/app/meta
+      - /home/ubuntu/cron.sh:/var/www/html/cron.sh
+      - /home/ubuntu/ftp:/var/www/html/storage/app/ftp
+    command: sh cron.sh
